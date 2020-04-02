@@ -20,7 +20,7 @@ from setuptools import setup
 import os
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-REPO_URL = "https://github.com/nickolas360/librecaptcha"
+REPO_URL = "https://github.com/jeffcarpenter/librecaptcha"
 DESC_REPLACEMENTS = {
     ".. _LICENSE: LICENSE":
     ".. _LICENSE: {}/blob/master/LICENSE".format(REPO_URL),
@@ -46,7 +46,7 @@ setup(
     version="0.6.3-dev",
     description="A free/libre interface for solving reCAPTCHA challenges.",
     long_description=long_description(),
-    url="https://github.com/nickolas360/librecaptcha",
+    url="https://github.com/jeffcarpenter/librecaptcha",
     author="nickolas360",
     author_email="contact@nickolas360.com",
     license="GNU General Public License v3 or later (GPLv3+)",
@@ -67,13 +67,13 @@ setup(
         ],
     },
     install_requires=[
-        "Pillow>=4.1.1",
-        "requests>=2.18.1",
-        "slimit>=0.8.1",
+        "Pillow>=7.1.1,<8.0",
+        "requests>=2.23.0,<3.0",
+        "pyjsparser>=2.7.1,<3.0",
     ],
     extras_require={
         "gtk": [
-            "PyGObject>=3.30.0",
+            "PyGObject>=3.30.0,<4.0",
         ]
     },
 )

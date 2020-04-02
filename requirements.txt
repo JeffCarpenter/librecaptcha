@@ -1,4 +1,4 @@
-Pillow>=4.1.1
-requests>=2.18.1
-slimit>=0.8.1
-PyGObject>=3.30.0
+Pillow>=7.1.1,<8.0
+requests>=2.23.0,<3.0
+pyjsparser>=2.7.1,<3.0
+PyGObject>=3.30.0,<4.0

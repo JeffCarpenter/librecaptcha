@@ -15,8 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with librecaptcha.  If not, see <http://www.gnu.org/licenses/>.
 
-from slimit.parser import Parser
-from slimit import ast
+from pyjsparser import parse
 import requests
 
 import json
@@ -59,28 +58,28 @@ def load_javascript(url, user_agent):
 
 def extract_strings(javascript):
     print("Extracting strings...", file=sys.stderr)
-    parsed = make_parser().parse(javascript)
+    parsed = parse(javascript)
     strings = []
 
-    def add_strings(tree, strings):
+    def add_strings(tree, found):
         if tree is None:
             return
 
-        if not isinstance(tree, (ast.Node, list, tuple)):
-            raise TypeError("Unexpected item: {!r}".format(tree))
+        if isinstance(tree, (list, tuple)):
+            for child in tree:
+                add_strings(child, found)
 
-        if isinstance(tree, ast.String):
-            strings.append(tree.value[1:-1])
+        elif isinstance(tree, dict):
+            if ("type" in tree and tree["type"] == "Literal"
+                and "value" in tree and isinstance(tree["value"], str)):
 
-        children = tree
-        if isinstance(tree, ast.Node):
-            children = tree.children()
+                found.append(tree["value"])
+            for value in tree.values():
+                add_strings(value, found)
 
-        for child in children:
-            add_strings(child, strings)
+        return found
 
-    add_strings(parsed, strings)
-    return strings
+    return add_strings(parsed, strings)
 
 
 def extract_and_save(url, path, version, rc_version, user_agent):
@@ -92,4 +91,4 @@ def extract_and_save(url, path, version, rc_version, user_agent):
         strings_json = json.dumps(strings)
         print('Saving strings to "{}"...'.format(path), file=sys.stderr)
         f.write(strings_json)
-        return strings
+    return strings

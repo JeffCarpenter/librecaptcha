@@ -1,7 +1,7 @@
 librecaptcha
 ============
 
-Version 0.6.3-dev
+Version 0.6.4-dev
 
 librecaptcha is a free/libre program and library that allows you to solve
 `reCAPTCHA`_ challenges.
@@ -165,25 +165,6 @@ Version 0.2.x:
 * Updated user-agent list.
 * The current reCAPTCHA version is now fetched during initialization and no
   longer needs to be manually updated.
-
-
-Dependencies
-------------
-
-* `Python`_ ≥ 3.5
-* The following Python packages (the installation instructions above handle
-  installing these):
-
-  - `Pillow`_ ≥ 4.1.1
-  - `requests`_ ≥ 2.18.1
-  - `slimit`_ ≥ 0.8.1
-  - `PyGObject`_ ≥ 3.30.0 (only for GUI)
-
-.. _Python: https://www.python.org/
-.. _Pillow: https://pypi.org/project/Pillow/
-.. _requests: https://pypi.org/project/requests/
-.. _slimit: https://pypi.org/project/slimit/
-.. _PyGObject: https://pypi.org/project/PyGObject/
 
 
 License

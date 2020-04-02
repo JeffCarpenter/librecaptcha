@@ -316,6 +316,7 @@ class ReCaptcha:
         self.js_strings = None
         self.rc_version = None
         if make_requests:
+            print("Making requests...")
             self.rc_version = get_rc_version(self.user_agent)
             self.js_strings = get_js_strings(self.user_agent, self.rc_version)
 
